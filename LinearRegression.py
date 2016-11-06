@@ -71,3 +71,9 @@ mseSK = sum([pow(errorSK[i], 2) for i in range(len(error))]) / nTest
 
 print 'MSE when using normal equation for LR : %f' %(mse)
 print 'MSE when using SK-learn for LR : %f' %(mseSK)
+
+yHat = [np.array(prediction)[i][0] for i in range(nTest)]
+yHatSK = [np.array(predictionSK)[i][0] for i in range(nTest)]
+
+print 'Correlation Coefficient using normal equation for LR : %f' %(np.corrcoef(yHat, yTest)[0][1])
+print 'Correlation Coefficient using SK-learn for LR : %f' %(np.corrcoef(yHatSK, yTest)[0][1])
