@@ -10,7 +10,6 @@ import numpy as np
 
 from sklearn import linear_model
 
-
 ### 1. Load data from uci repository.
 xData = []
 yData = []
@@ -28,6 +27,7 @@ for line in lines:
     # feature values를 xData에 저장한다.
     xData.append(map(float, tokens))
 
+
 ### 2. Divide data set into two parts, train set(70%) and test set(30%).
 nTest = int(len(xData) * 0.3)
 # testIdx를 구한다.
@@ -41,6 +41,7 @@ yTrain = [yData[i] for i in trainIdx]
 xTest = [xData[i] for i in testIdx]
 yTest = [yData[i] for i in testIdx]
 
+
 ### 3. Fit the regression model using train set. (Not used SK-learn)
 # (X^TX)^-1X^Ty : normal equation
 trainXMatrix = np.matrix(xTrain)
@@ -51,6 +52,7 @@ if np.linalg.det(corrMatrix) == 0.0:
     raise ('This matrix is singular, cannot do inverse.')
 # 정규방적식을 이용하여 coefficient의 값을 구한다.
 wHat = np.linalg.inv(corrMatrix) * trainXMatrix.T * trainYMatrix
+
 
 ### 4. Test set의 mse를 구해본다.
 testXMatrix = np.matrix(xTest)
