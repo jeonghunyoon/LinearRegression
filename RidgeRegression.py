@@ -22,6 +22,7 @@ from urllib2 import urlopen
 from sklearn.cross_validation import train_test_split
 from sklearn import linear_model
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 ##############################################################
@@ -62,6 +63,7 @@ for alpha in alpha_list:
     ridge_model.fit(x_train, y_train)
     model_list.append(ridge_model)
 
+
 ##########################
 # (3) model의 성능을 측정한다.
 ##########################
@@ -78,6 +80,7 @@ for model in model_list:
 for i in range(len(rmse_list)):
     print("alpha : ", alpha_list[i], ", rmse : ", rmse_list[i])
 
+
 #########################################
 # Ordinary Linear Regression의 rmse와 비교
 #########################################
@@ -91,3 +94,14 @@ mse = sum([error**2 for error in lin_error]) / len(lin_error)
 rmse = np.sqrt(mse)
 
 print ("linear regression : ", rmse)
+
+
+###############
+# (4) Plotting
+###############
+x_axis = range(len(rmse_list))
+plt.figure()
+plt.plot(x_axis, rmse_list, "k")
+plt.xlabel("-log(alpha)")
+plt.ylabel("Error (RMSE)")
+plt.show()
