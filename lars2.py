@@ -81,7 +81,7 @@ step_size = 0.004
 
 # total average of sum of squares of residuals
 errors = []
-for _, _ in enumerate(n_step):
+for _ in range(n_step):
     errors.append([])
 
 # 10 fold
@@ -104,7 +104,6 @@ for i_trial in range(n_cross_val):
     # use numpy matrix
     x_train_mat = np.matrix(x_train)
     x_test_mat = np.matrix(x_test)
-    y_test_mat = np.matrix(y_test)
 
     # residual
     for step in range(n_step):
@@ -131,7 +130,7 @@ for i_trial in range(n_cross_val):
         # errors for mse
         for i, v in enumerate(y_test):
             error = v - np.dot(x_test_mat[i, :], np.array(beta))
-            errors[step].append(error)
+            errors[step].append(float(error))
 
 
 '''
@@ -144,14 +143,15 @@ for err_vec in errors:
     mse_list.append(mse)
 
 idx_min_mse = 0
-min_mse = 0
-for i, v in mse_list:
+min_mse = float("inf")
+for i, v in enumerate(mse_list):
     if v < min_mse:
         idx_min_mse = i
         min_mse = v
 
 print "Minimum MSE : %f" %(min_mse)
 print "Minimum MSE index : %d" %(idx_min_mse)
+
 
 '''
 visualization
