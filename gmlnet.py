@@ -3,9 +3,7 @@
 '''
 1. data load
 2. normalization
-3. 10 cross-validation
- 3-1. correlation check
- 3-2. beta update
+3. correlation coeifficeint
 '''
 
 __author__ = "Jeonghun Yoon"
@@ -65,3 +63,11 @@ stddev = math.sqrt(variance)
 for i, v in enumerate(y_data):
     y_data[i] = (v - mean) / stddev
 
+
+'''
+3. using correaltion coefficient update beta vector. started from a beta vector whose entryies are all 0.
+'''
+beta_vec = [0.0] * n_col
+for i in range(n_row):
+    for j in range(n_col):
+        beta_vec[i][j] += x_data[i][j] * y_data[i]
