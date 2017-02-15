@@ -13,7 +13,6 @@ import urllib2
 import math
 import numpy as np
 import matplotlib.pyplot as plot
-from sklearn.cross_validation import train_test_split
 
 '''
 1. data load from uci archieve
